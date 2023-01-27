@@ -50,8 +50,6 @@ let reducerDragon = (state = stateInit, action = {}) => {
     default:
       return state;
   }
-
-  return state;
 };
 
 export default reducer;
