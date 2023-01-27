@@ -8,7 +8,7 @@ import reportWebVitals from "./reportWebVitals";
 // Redux mise en place dans notre application
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import reducer from "./reducers/question";
+import reducer from "./reducers/reducers";
 
 // récupérer le store, le state avec son reducer, il nous permettra de contextualiser
 const store = createStore(reducer);

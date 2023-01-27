@@ -1,2 +1,2 @@
 // 2ÈME PARTIE
-export const CHOICE = "choice";
+// Créer les constantes des différents type d'actions
