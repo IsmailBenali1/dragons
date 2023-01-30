@@ -2,16 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 
 // 1ÈRE ÉTAPE
 // Redux mise en place dans notre application
-import { Provider } from "react-redux";
+// importer provider et create store
 import { createStore } from "redux";
-import reducer from "./reducers/reducers";
+import { Provider } from "react-redux"; // permet de contextualiser le store Redux dans React
+import reducer from "./reducers/reducer";
+
+// création du store => prêt pour l'App
+const store = createStore(reducer);
 
 // récupérer le store, le state avec son reducer, il nous permettra de contextualiser
-const store = createStore(reducer);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,8 +23,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

@@ -1,15 +1,23 @@
-// Importer les éléments dont on a besoin pour utiliser les state nécessaires ici
-// ainsi que les hooks
-
-// ICI ON BOUCLE SUR LE TABLEAU DE DRAGONS POUR L'AFFICHER
+import { useSelector, useDispatch } from "react-redux";
+import { deleteDragon } from "../actions/actions-types";
+import Button from "../Styles/Button";
 
 const Dragon = () => {
-  // dans une constante récupération du tableau dragons dans notre state
-  // ne pas oublier le hook dispatch
+  const { dragons } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const handleDelete = (dragon) => {
+    dispatch(deleteDragon(dragon));
+  };
 
   return (
     <ul>
-      {/* map ici dans une liste avec un bouton pour appeler le disptach de suppression s'il a été fait */}
+      {dragons.map((dragon, i) => (
+        <li key={i}>
+          {dragon}
+          <Button onClick={() => handleDelete(dragon)}>Delete</Button>
+        </li>
+      ))}
     </ul>
   );
 };

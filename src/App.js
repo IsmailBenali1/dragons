@@ -1,24 +1,36 @@
-// Hook qui permet d'utiliser les state pour lire (afficher)
-import { useSelector } from "react-redux";
-import Dragon from "./components/Dragon";
-// 4ÈME PARTIE RÉCUP DES DATAS POUR AFFICHAGE
+import Button from "../Styles/Button";
+import Input from "../Styles/Input";
 
-const App = () => {
-  // lecture du store
-  const { dragons } = useSelector((state) => state);
+import { useDispatch, useSelector } from "react-redux";
+import { addDragon, setDragon } from "../actions/actions-types";
 
-  // Array.from sur un Map permet de le transformer en tableau de tableau clé/val
+const Form = () => {
+  const { dragon } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(addDragon());
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    // pratique si vous avez plusieurs champs à contrôler
+    // voir le reducer
+    dispatch(setDragon({ name, value }));
+  };
+
   return (
-    <>
-      <div className="App">
-        {Array.from(dragons).map((d, i) => {
-          const [id, dragon] = d;
-
-          return <Dragon key={i} id={id} {...dragon} />;
-        })}
-      </div>
-    </>
+    <form onSubmit={handleSubmit}>
+      <label>
+        Name (dragon) :
+        <Input onChange={handleChange} value={dragon} name="dragon" />
+      </label>
+      <Button size={1}>Add</Button>
+    </form>
   );
 };
 
-export default App;
+export default Form;
